@@ -1,6 +1,10 @@
 ﻿namespace WebApplication1.Data.Enums;
 
-public class ClubCategory
+public enum ClubCategory
 {
-    
+    RoadRunner,
+    Womens,
+    City,
+    Trail,
+    Endurance
 }

@@ -6,10 +6,9 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace WebApplication1.Migrations
 {
-    /// <inheritdoc />
+    
     public partial class InitialCreate : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -17,7 +16,8 @@ namespace WebApplication1.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Street = table.Column<string>(type: "text", nullable: false),
                     City = table.Column<string>(type: "text", nullable: false),
                     State = table.Column<string>(type: "text", nullable: false),
