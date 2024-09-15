@@ -1,0 +1,50 @@
+﻿@model Race
+
+@{
+}
+
+<div class="container mt-5">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col">
+            <h2>Page Heading <small class="text-muted">Secondary Text</small></h2>
+        </div>
+    </div>
+
+    <!-- Image and Project Description Section -->
+    <div class="row mt-4">
+        <!-- Image -->
+        <div class="col-lg-6">
+            <img src="@Model.Image" alt="Project Image" class="img-fluid">
+        </div>
+        <!-- Project Description and Details -->
+        <div class="col-lg-6">
+            <h3 class="my-3">@Model.Title</h3>
+            <p>@Model.Description</p>
+            <h5 class="mt-4">Location</h5>
+            <ul class="custom-list">
+                <li>@Model.Address.City</li>
+                <li>@Model.Address.State</li>
+                <li>@Model.RaceCategory</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Related Projects Section -->
+    <div class="row mt-5">
+        <h4>Related Projects</h4>
+        <!-- Related Project Images -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="https://via.placeholder.com/500x300" alt="Related Project 1" class="img-fluid">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="https://via.placeholder.com/500x300" alt="Related Project 2" class="img-fluid">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="https://via.placeholder.com/500x300" alt="Related Project 3" class="img-fluid">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="https://via.placeholder.com/500x300" alt="Related Project 4" class="img-fluid">
+        </div>
+    </div>
+</div>
