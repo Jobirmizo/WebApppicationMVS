@@ -1,9 +1,12 @@
+using CloudinaryDotNet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using RunGroopWebApp.Data;
 using WebApplication1.Data;
+using WebApplication1.Helpers;
 using WebApplication1.Interfaces;
 using WebApplication1.Service;
+using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<IRaceService, RaceService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
