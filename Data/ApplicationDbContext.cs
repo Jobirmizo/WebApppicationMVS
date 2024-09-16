@@ -5,7 +5,7 @@ namespace WebApplication1.Data;
 
 public class ApplicationDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
         
     }
@@ -13,6 +13,4 @@ public class ApplicationDbContext : DbContext
     public DbSet<Race> Races { get; set; }
     public DbSet<Club> Clubs { get; set; }
     public DbSet<Address> Addresses { get; set; }
-    public DbSet<State> States { get; set; }
-    public DbSet<City> Cities { get; set; }
 }

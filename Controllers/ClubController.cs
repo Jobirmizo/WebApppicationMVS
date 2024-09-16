@@ -1,26 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Data.SqlTypes;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Interfaces;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers;
 
 public class ClubController : Controller
 {
-    private readonly ApplicationDbContext _context;
+    private readonly IClubService _clubService;
     
-    public ClubController(ApplicationDbContext context)
+    public ClubController(IClubService clubService)
     {
-        _context = context;
+        _clubService = clubService;
     }
-    public IActionResult Index()
+
+    public async Task<IActionResult> Index()
     {
-        List<Club> clubs = _context.Clubs.ToList();
+        IEnumerable<Club> clubs = await _clubService.GetAll();
         return View(clubs);
     }
-    
-    public IActionResult Detail(int id)
+
+    public async Task<IActionResult> Detail(int id)
     {
-        Club club = _context.Clubs.FirstOrDefault(c => c.Id == id);
+        Club club = await _clubService.GetByIdAsync(id);    
         return View(club);
     }
 }

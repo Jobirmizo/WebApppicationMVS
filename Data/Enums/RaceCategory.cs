@@ -4,7 +4,7 @@ public enum RaceCategory
 {
     Marathon,
     Ultra,
-    FivekK,
+    FiveK,
     TenK,
     HalfMarathon
 }

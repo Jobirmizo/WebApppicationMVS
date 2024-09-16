@@ -1,17 +1,23 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using RunGroopWebApp.Data;
 using WebApplication1.Data;
+using WebApplication1.Interfaces;
+using WebApplication1.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IClubService, ClubService>();
+builder.Services.AddScoped<IRaceService, RaceService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-var app = builder.Build();
 
+var app = builder.Build();
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     Seed.SeedData(app);
