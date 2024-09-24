@@ -20,7 +20,7 @@ public class AccountController : Controller
         _signInManager = signInManager;
     }
     [HttpGet]
-    public IActionResult login()
+    public IActionResult Login()
     {
         var response = new LoginViewModel();
         return View(response);
@@ -29,16 +29,13 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginViewModel loginViewModel)
     {
-        if (ModelState.IsValid)
-        {
-            return View(loginViewModel);
-        }
-
+        if (!ModelState.IsValid) return View(loginViewModel);
+        
         var user = await _userManager.FindByEmailAsync(loginViewModel.EmailAddress);
         if (user != null)
         {
-            var checkPassword = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
-            if (checkPassword)
+            var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
+            if (passwordCheck)  
             {
                 var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
                 if (result.Succeeded)
@@ -47,6 +44,7 @@ public class AccountController : Controller
                 }    
             }
             TempData["Error"] = "Wrong cretians try again";
+            return View(loginViewModel);
         }
         TempData["Error"] = "Wrong cretians try again";
         return View(loginViewModel);
