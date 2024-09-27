@@ -78,7 +78,15 @@ public class AccountController : Controller
         };
         var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
         if (newUserResponse.Succeeded)
+        {
             await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+        }
+        else
+        {
+            TempData["Error"] = "Password should be uppercase";
+            return View(registerViewModel);
+        }
+            
 
         return RedirectToAction("Index", "Race");
     }

@@ -19,6 +19,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IClubService, ClubService>();
 builder.Services.AddScoped<IRaceService, RaceService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -37,6 +38,7 @@ var app = builder.Build();
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
 {
     await Seed.SeedUsersAndRolesAsync(app);
+    Seed.SeedData(app);
 }
 
 // Configure the HTTP request pipeline.
